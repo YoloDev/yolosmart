@@ -1,0 +1,9 @@
+[workspace.package]
+edition = "2024"
+authors = ["Alxandr <alxandr@alxandr.me>"]
+
+[workspace]
+resolver = "3"
+members = [
+    "devices/temp-sensor"
+]
