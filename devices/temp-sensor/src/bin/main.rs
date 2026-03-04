@@ -40,7 +40,7 @@ async fn main(spawner: Spawner) -> ! {
 	esp_println::println!("hello world!");
 
 	// Set GPIO
-	// let led = Output::new(peripherals.GPIO18, Level::High, OutputConfig::default());
+	let led = Output::new(peripherals.GPIO15, Level::High, OutputConfig::default());
 
 	let timg0 = TimerGroup::new(peripherals.TIMG0);
 	let sw_interrupt = SoftwareInterruptControl::new(peripherals.SW_INTERRUPT);
@@ -49,7 +49,7 @@ async fn main(spawner: Spawner) -> ! {
 	esp_println::println!("embassy init!");
 
 	// TODO: Spawn some tasks
-	// spawner.must_spawn(toggle(led));
+	spawner.must_spawn(toggle(led));
 
 	for i in 0..10 {
 		esp_println::println!("count = {i}");
@@ -61,11 +61,11 @@ async fn main(spawner: Spawner) -> ! {
 	// for inspiration have a look at the examples at https://github.com/esp-rs/esp-hal/tree/esp-hal-v1.0.0/examples
 }
 
-// #[embassy_executor::task]
-// async fn toggle(mut led: Output<'static>) {
-// 	loop {
-// 		esp_println::println!("toggle loop!");
-// 		led.toggle();
-// 		Timer::after_secs(2).await;
-// 	}
-// }
+#[embassy_executor::task]
+async fn toggle(mut led: Output<'static>) {
+	loop {
+		esp_println::println!("toggle loop!");
+		led.toggle();
+		Timer::after_secs(2).await;
+	}
+}
