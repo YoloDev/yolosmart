@@ -7,3 +7,17 @@ resolver = "3"
 members = [
     "devices/temp-sensor"
 ]
+
+[patch.crates-io]
+rs-matter = { git = "https://github.com/sysgrok/rs-matter", rev = "63631cd252f72fa99fc04432329a79a3e4714ae8" }
+rs-matter-stack = { git = "https://github.com/sysgrok/rs-matter-stack.git", rev = "3a539df52d4b721bf5f770553082a4f6993c61c3" }
+openthread = { git = "https://github.com/sysgrok/openthread.git", rev = "df4585e1e2d48831c6cd48e95a1d0b9a32b85e9e" }
+
+esp-hal = { git = "https://github.com/esp-rs/esp-hal", rev = "e156b5453a8adc123b7a8b6aa08e0698ec87dfe8" }
+esp-rtos = { git = "https://github.com/esp-rs/esp-hal", rev = "e156b5453a8adc123b7a8b6aa08e0698ec87dfe8" }
+esp-alloc = { git = "https://github.com/esp-rs/esp-hal", rev = "e156b5453a8adc123b7a8b6aa08e0698ec87dfe8" }
+esp-backtrace = { git = "https://github.com/esp-rs/esp-hal", rev = "e156b5453a8adc123b7a8b6aa08e0698ec87dfe8" }
+esp-println = { git = "https://github.com/esp-rs/esp-hal", rev = "e156b5453a8adc123b7a8b6aa08e0698ec87dfe8" }
+esp-radio = { git = "https://github.com/esp-rs/esp-hal", rev = "e156b5453a8adc123b7a8b6aa08e0698ec87dfe8" }
+esp-bootloader-esp-idf = { git = "https://github.com/esp-rs/esp-hal", rev = "e156b5453a8adc123b7a8b6aa08e0698ec87dfe8" }
+esp-metadata-generated = { git = "https://github.com/esp-rs/esp-hal", rev = "e156b5453a8adc123b7a8b6aa08e0698ec87dfe8" }

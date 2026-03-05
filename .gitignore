@@ -15,3 +15,5 @@ result/
 # nix env related
 /.direnv
 /.pre-commit-config.yaml
+
+/tmp

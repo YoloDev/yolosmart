@@ -16,20 +16,30 @@ doctest = false
 bench = false
 
 [dependencies]
-esp-hal = { version = "~1.0", features = ["esp32c6", "unstable"] }
+log = "0.4"
 
-esp-rtos = { version = "0.2.0", features = ["embassy", "esp32c6"] }
-
-esp-bootloader-esp-idf = { version = "0.4.0", features = ["esp32c6"] }
-
-esp-println = { version = "0.16.1", features = ["esp32c6"] }
+esp-backtrace = { version = "0.18.1", features = ["panic-handler", "println"] }
+esp-hal       = { version = "~1.0", features = ["unstable"] }
+esp-rtos      = { version = "0.2.0", features = ["embassy", "esp-radio"] }
+esp-alloc     = { version = "0.9" }
+esp-println   = { version = "0.16.1", features = ["log-04"] }
+esp-radio     = { version = "0.17", features = ["ble", "log-04", "unstable"] }
+esp-bootloader-esp-idf = { version = "0.4.0", features = [] }
+esp-metadata-generated = "0.3"
 
 embassy-executor = { version = "0.9.1", features = [] }
 embassy-time     = "0.5.0"
+embassy-sync     = "0.7"
 
 critical-section = "1.2.0"
 static_cell      = "2.1.1"
 
+tinyrlibc = { version = "0.5", default-features = false, features = ["utoa", "strtoul"] }
+
+[dependencies.rs-matter-embassy]
+git = "https://github.com/sysgrok/rs-matter-embassy.git"
+rev = "d7fc610077031375e4ea755b97bcb4d86352eca6"
+features = ["openthread", "esp", "kv-blob-store-8192"]
 
 [profile.dev]
 # Rust debug is too slow.
@@ -44,3 +54,18 @@ incremental      = false
 lto              = 'fat'
 opt-level        = 's'
 overflow-checks  = false
+
+[features]
+default = ["esp32c6"]
+esp32 = []
+esp32c6 = [
+	"esp32",
+	"esp-rtos/esp32c6",
+	"esp-hal/esp32c6",
+	"esp-backtrace/esp32c6",
+	"esp-println/esp32c6",
+	"esp-radio/esp32c6",
+	"esp-bootloader-esp-idf/esp32c6",
+	"esp-metadata-generated/esp32c6",
+	# "portable-atomic/critical-section",
+]
